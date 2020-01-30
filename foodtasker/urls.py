@@ -10,6 +10,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^$', include('foodtaskerapp.urls')),
     url(r'^$', views.home, name='home'),
+
+    # Restaurant
     url(r'^restaurant/sign-in/$', auth_views.login,
         {'template_name': 'restaurant/sign_in.html'},
         name = 'restaurant-sign-in'),
@@ -18,4 +20,10 @@ urlpatterns = [
         name = 'restaurant-sign-out'),
     url(r'^restaurant/sign-up/$', views.restaurant_sign_up, name = 'restaurant-sign-up'),
     url(r'^restaurant/$', views.restaurant_home, name = 'restaurant-home'),    
+
+    # Sign In/ Sign Up/ Sign Out
+    url(r'^api/social/', include('rest_framework_social_oauth2.urls')),
+    # /convert-token (sign in/sign up)
+    # /revoke-token (sign-out)
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
